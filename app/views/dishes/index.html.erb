@@ -94,8 +94,10 @@
           <th>...</th>
         </tr>
   <% @dishes.each do |d| %>
+   <tr>
+        <td><%=d.name%></td>
   <% end %>
- 
+ </tr>
     </table>
     <%= paginate @dishes, theme: 'twitter-bootstrap-4' %>
   </div>
