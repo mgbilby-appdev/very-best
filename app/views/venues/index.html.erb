@@ -93,16 +93,14 @@
           </th>
           <th>...</th>
         </tr>
-  <% @venue.each do |venue| %>
+  <% @venues.each do |venue| %>
       <tr>
-        <td><%= venue.name %></td>
-        <td>
-          <% if venue.name.present? %>
-            <a href="/venues/<%= venue.name.id %>">
+        <td></td>
+        <td> <% if venue.name.present? %>
+            <a href="/venues/<%= venue.id %>">
               <%= venue.name %>
             </a>
-          <% end %>
-        </td>
+          <% end %></td>
       </tr>
       <% end %>
     </table>
