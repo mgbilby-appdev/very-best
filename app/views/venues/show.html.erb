@@ -1,31 +1,37 @@
-<div class="page-header">
-  <h3>Venue #<%= @venue.id %></h3>
+<div class="container mt-4">
+  <div class="row mt-2 justify-content-md-center"
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">
+            <%= @venue.name %>
+            <small class="text-muted">
+              <%= @venue.neighborhood.name %>, <%= @venue.address %>
+            </small>
+          </h4>
+        </div>
+      
+        <div class="card-body">
+          <div id="location_map" style="height: 360px; position: relative; overflow:hidden;">
+          </div>
+          <ul class="list-group">
+            <li class="list-group-item list-group-item-success">
+              Dishes you loved here
+            </li>
+            <li class="list-group-item list-group-item-success">
+              <p></p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="row">
-  <div class="col-md-12 mb-2">
-    <dl class="dl-horizontal">
-      <dt>Name</dt>
-      <dd><%= @venue.name %></dd>
-
-      <dt>Address</dt>
-      <dd>
-        <div>
-          <div id="location_map" style="height: 480px;"></div>
-        </div>
-      </dd>
-
-      <dt>Neighborhood</dt>
-      <dd>
-        <% if @venue.neighborhood.present? %>
-          <a href="/neighborhoods/<%= @venue.neighborhood_id %>">
-            <%= @venue.neighborhood.name %>
-          </a>
-        <% end %>
-      </dd>
-
-    </dl>
-
+      
+      
+      
+  
     <div class="btn-group btn-group-justified">
       <a href="/venues" class="btn btn-primary">
         Back
