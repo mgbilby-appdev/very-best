@@ -1,16 +1,15 @@
-<div class="page-header">
-</div>
-<div class="row mt-2 mb-1">
-  <div class="col-md-3">
-    <%= search_form_for @q, :class => "collapse", :id => "venues_filters" do |f| %>
+<div class="container mt-4">
+  <div class="row mt-2 mb-1">
+    <div class="col-md-3">
+      <%= search_form_for @q, :class => "collapse", :id => "venues_filters" do |f| %>
       <p class="lead">Narrow results:</p>
 
         <div class="form-group">
-    <%= f.label :name_cont, "Name contains" %>
-    <%= f.text_field :name_cont, :class => "form-control", :placeholder => "Name contains" %>
+        <%= f.label :name_cont, "Name contains" %>
+        <%= f.text_field :name_cont, :class => "form-control", :placeholder => "Name contains" %>
         </div>
 
-  <div class="form-group">
+        <div class="form-group">
           <%= f.label :created_at, "Created at" %>
           <div class="row">
             <div class='col-md-6 mb-1'>
@@ -79,41 +78,39 @@
     </a>
   </div>
 
-  <div class="col-md-6">
-    <div class="card">
-      <div class="card-header">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
         <h4 class ="card-title">
           Places you've bookmarked
         </h4>
-      </div>
-      <div class="card-body">
+        </div>
+        <div class="card-body">
          <div id="location_map" style="height: 360px; position: relative; overflow: hidden;"></div>
-      </div>
-      <ul class="list-group list-group-flush"
-      <% Bookmark.where(:user_id => current_user).each do |bookmarks| %>
-        <li class="list-group-item">
+        </div>
+        <ul class="list-group list-group-flush"
+        <% Bookmark.where(:user_id => current_user).each do |bookmarks| %>
+          <li class="list-group-item">
           <a href="/venues/<%= bookmarks.venue_id%>">
-            <%= Venue.find(bookmarks.venue_id).name %>
+            <%= Venue.find(bookmarks.venue_id).name %> 
           </a> 
           <small class="text-muted float-right">
-            <%= Venue.find(bookmarks.venue_id).neighborhood.id%>
+            <%= Venue.find(bookmarks.venue_id).neighborhood.name%>, <%= Venue.find(bookmarks.venue_id).neighborhood.city%> 
           </small>
-        </li>
-        </ul>
-    <% end %>
-     
-  
-
+          </li>
+          </ul>
+          <% end %>
+        <div class="card-footer text-center">
+        </div>
+        </div>
     
-      <div class="card-footer text-center">
-        
-      </div>
-    <%= paginate @venues, theme: 'twitter-bootstrap-4' %>
-  </div>
-</div>
-<div class="col-md-3">
-  <a href="/venues/new" class="btn btn-lg btn-success">Add a new venue</a>
-</div>
+    <div class="col-md-3">
+      <a href="/venues/new" class="btn btn-lg btn-success">
+        Add a new venue
+      </a>
+    </div>
+
+
 
 
 
