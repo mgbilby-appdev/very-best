@@ -18,9 +18,76 @@
             <li class="list-group-item list-group-item-success">
               Dishes you loved here
             </li>
-            <li class="list-group-item list-group-item-success">
-              <p></p>
+            
+            <% @venue.bookmarks.each do |bookmark| %>
+        
+            <li class="list-group-item">
+              <p>
+                <a href="/venues/<%= bookmark.venue_id %>">
+                   <%= bookmark.dish_id %>
+                  </a>
+                <small class="float-right text-muted">
+                  ...
+                
+                <a href="/bookmarks/<%= bookmark.id %>/edit"
+                <i class="fa fa-fw fa-edit">
+                </i>
+                </a>
+                
+                 <a href="/delete_bookmarks/<%= bookmark.id %>"
+                <i class="fa fa-fw fa-trash-o">
+                </i>
+                </a>
+                </small>
+              </p>
             </li>
+            
+            <li class="list-group-item">
+              <form action="/create/bookmark" class="form-inline float-left" method="post">
+                  <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for dish_id -->
+                  <div class="form-group mr-sm-1">
+                  <label for="dish_id" class="control-label sr-only">
+                  Dish
+                  </label>
+
+                 <%= select_tag(:dish_id, options_from_collection_for_select(Dish.all, :id, :name), :class => "form-control") %>
+              </div>
+
+      <!-- Label and input for venue_id -->
+      <input type="hidden" name="venue_id" value="<%= @venue.id %>">
+
+      <!-- Label and input for user_id -->
+      <input type="hidden" name="user_id" value="<%= current_user.id %>">
+
+      <button class="btn btn-primary btn">
+        <i class ="fa fa-heart"></i>
+       
+      </button>
+    </form>
+    <small class="float-right text-muted">right now</small>
+            
+            </li>
+            
+            <% end %>
+            
+            
+            <li class="list-group-item list-group-item-success">
+              Popular dishes here
+            </li>
+            
+                <% @venue.specialties.each do |dish| %>
+            
+            <li class="list-group-item">
+                <a href="/dishes/<%= dish.id %>">
+                <%= dish.name %>
+                </a>
+            </li>
+      <% end %>
+            
+            
+            
           </ul>
         </div>
       </div>
