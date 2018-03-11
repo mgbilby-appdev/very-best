@@ -4,7 +4,7 @@ class Cuisine < ApplicationRecord
   has_many   :dishes,
              :dependent => :destroy
 
-  # Indirect associations
+  # Indirect associations,
 
   # Validations
 
