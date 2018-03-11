@@ -36,15 +36,18 @@
 
     <div class="col-md-6">
       <div class="card">
+        
         <div class="card-header">
         <h4 class ="card-title">
           Places you've bookmarked
         </h4>
         </div>
+        
         <div class="card-body">
          <div id="location_map" style="height: 360px; position: relative; overflow: hidden;">
          </div>
         </div>
+        
     
         <ul class="list-group list-group-flush"
         <% Bookmark.where(:user_id => current_user).each do |bookmarks| %>
@@ -56,11 +59,13 @@
             <%= Venue.find(bookmarks.venue_id).neighborhood.name%>, <%= Venue.find(bookmarks.venue_id).neighborhood.city%> 
           </small>
           </li>
-          </ul>
           <% end %>
+          </ul>
+        
         <div class="card-footer text-center">
         </div>
-        </div>
+        
+      </div>
         </div>
     
     <div class="col-md-3">
