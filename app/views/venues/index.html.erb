@@ -1,33 +1,34 @@
+<div class="page-header">
+</div>
 <div class="container mt-4">
-  <div class="row mt-2 mb-1">
-    <div class="col-md-3">
-      <%= search_form_for @q, :class => "collapse", :id => "venues_filters" do |f| %>
+<div class="row mt-2 mb-1">
+  <div class="col-md-3">
+    <%= search_form_for @q, :class => "collapse", :id => "dishes_filters" do |f| %>
       <p class="lead">Narrow results:</p>
-
-        <div class="form-group">
-        <%= f.label :name_cont, "Name contains" %>
-        <%= f.text_field :name_cont, :class => "form-control", :placeholder => "Name contains" %>
-        </div>
+      
 <div class="form-group">
-  <%= f.label :specialties_name_cont, "Bookmarked dish name contains" %>
-  <%= f.text_field :specialties_name_cont, :class => "form-control", :placeholder => "Dish name contains" %>
+    <%= f.label :name_cont, "Name contains" %>
+    <%= f.search_field :name_cont, :class => "form-control", :placeholder => "Name contains" %>
+  </div>
   
+<div class="form-group">
+<%= f.label :specialties_name_cont, "Bookmarked dish name contains" %>
+<%= f.search_field :specialties_name_cont, :class => "form-control", :placeholder => "Bookmarked dish name contains" %>
 </div>
 
-    
 <div class="form-group">
       <%= f.label :neighborhood_name_cont, "Neighborhood name contains" %>
-      <%= f.text_field :neighborhood_name_cont, :class => "form-control", :placeholder => "Neighborhood name contains" %>
+      <%= f.search_field :neighborhood_name_cont, :class => "form-control", :placeholder => "Neighborhood name contains" %>
     </div>
 
-      <%= f.submit :class => "btn btn-primary btn-block mb-1" %>
 
-      <a href="/venues" class="btn btn-secondary btn-block mb-1">Clear filters</a>
-    <% end %>
-    <a class="btn btn-secondary btn-block mb-1" data-toggle="collapse" href="#venues_filters">
-      Show Filters
-    </a>
-  </div>
+ <%= f.submit :class => "btn btn-primary btn-block mb-1" %>            
+ <a href="/dishes" class="btn btn-secondary btn-block mb-1">Clear filters</a>                         
+ <% end %>            
+ <a class="btn btn-secondary btn-block mb-1" data-toggle="collapse" href="#dishes_filters">            
+Show Filters            
+ </a>            
+</div>
 
     <div class="col-md-6">
       <div class="card">
@@ -44,21 +45,17 @@
         </div>
         
     
-        <ul class="list-group list-group-flush"
-        <% Bookmark.where(:user_id => current_user).each do |bookmarks| %>
-          <li class="list-group-item">
-          <a href="/venues/<%= bookmarks.venue_id%>">
-            <%= Venue.find(bookmarks.venue_id).name %> 
-          </a> 
-          <small class="text-muted float-right">
-            <%= Venue.find(bookmarks.venue_id).neighborhood.name%>, <%= Venue.find(bookmarks.venue_id).neighborhood.city%> 
-          </small>
-          </li>
+        <ul class="list-group list-group-flush">
+          <% @venues.each do |v| %>
+          var arr = []
+          <!----> see if venue has been bookmarked by the user, then push into array, then print that array 
+           <li> <%= v.name %> </li>
           <% end %>
-          </ul>
+  
+        </ul>
         
         <div class="card-footer text-center">
-        </div>
+        </div
         
       </div>
         </div>

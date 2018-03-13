@@ -42,8 +42,8 @@ Show Filters
           <th> </th>
         </tr>
         
-  <% @dishes.each do |d| %>
-   
+  <% @dishes.order(:name).each do |d| %>
+  
    <tr>
         <td> <a href="/dishes/<%=d.id%>">
           <%=d.name%> </a>
